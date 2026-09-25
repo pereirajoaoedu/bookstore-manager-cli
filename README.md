@@ -2,19 +2,19 @@
 
 Clique em uma das opções para ser direcionado diretamente ao tópico desejado.
 
-[Descrição do Projeto](#descrição-do-projeto-do-projeto)
-[Objetivo](#objetivo)
-[Tecnologias Utilizadas](#tecnologias-utilizadas)
-[Requisitos para Execução](#requisitos-para-execução)
-[Configuração do Banco de Dados](#configuração-do-banco-de-dados)
-[Instalação](#instalação)
-[Execução](#execução)
-[Arquitetura do Projeto](#arquitetura-do-projeto)
-[Funcionalidades Implementadas](#funcionalidades-implementadas)
-[Estrutura de Pastas](#estrutura-de-pastas)
-[Exemplos de Utilização](#exemplos-de-utilização)
-[Integrantes da Equipe](#integrantes-da-equipe)
-[Link do Kanban](#link-do-kanban)
+* [Descrição do Projeto](#descrição-do-projeto)
+* [Objetivo](#objetivo)
+* [Tecnologias Utilizadas](#tecnologias-utilizadas)
+* [Requisitos para Execução](#requisitos-para-execução)
+* [Configuração do Banco de Dados](#configuração-do-banco-de-dados)
+* [Instalação](#instalação)
+* [Execução](#execução)
+* [Arquitetura do Projeto](#arquitetura-do-projeto)
+* [Funcionalidades Implementadas](#funcionalidades-implementadas)
+* [Estrutura de Pastas](#estrutura-de-pastas)
+* [Exemplos de Utilização](#exemplos-de-utilização)
+* [Integrantes da Equipe](#integrantes-da-equipe)
+* [Link do Kanban](#link-do-kanban)
 
 # 📝 Descrição do Projeto
 
