@@ -33,16 +33,16 @@ export async function TestarConexao(prefixo: string): Promise<string> {
     return msg;
 
   } catch (erro: unknown) {
-    const mensagemErro = erro instanceof Error ? erro.message : String(erro);
+    const mensagemErro = erro as { code: string };
 
-    if (mensagemErro.includes("n�o existe") || mensagemErro.includes("does not exist") || mensagemErro.includes("não existe")) {
+    if (mensagemErro.code === "3D000") {
         msg = `Banco de dados ${process.env[`${prefixo}_NAME`]} não existe.`;
     }
 
-    if (mensagemErro.includes("password authentication failed") || mensagemErro.includes("senha incorreta")) {
+    if (mensagemErro.code === "28000") {
         msg = `Senha incorreta para o usuário ${process.env[`${prefixo}_USER`]}.`;
     }
-
+    
     return msg;
   }
 }
