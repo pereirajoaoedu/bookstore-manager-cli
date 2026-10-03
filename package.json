@@ -1,10 +1,17 @@
 {
+  "type": "module",
   "devDependencies": {
-    "@types/node": "^26.6.2",
+    "@types/node": "^26.6.4",
+    "@types/pg": "^8.23.1",
+    "ts-node": "^10.9.2",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
   },
   "scripts": {
     "start": "tsx src/main.ts"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.5",
+    "pg": "^8.23.1"
   }
 }
