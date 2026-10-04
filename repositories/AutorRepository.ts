@@ -48,7 +48,16 @@ export class AutorRepository {
             await FecharConexao("DB1");
 
         } catch (erro) {
-            console.error("Erro ao remover autor no banco de dados. Motivo:", erro);
+
+            const mensagemErro = erro as { code: string };
+
+            if (mensagemErro.code === '23503') {
+                console.error("\x1b[31mNão foi possível excluir o autor, pois existem livros cadastrados e vinculados ao mesmo. Favor editar seu autor e inativá-lo.\x1b[0m")
+            }
+            else {
+                console.error("Erro ao remover autor no banco de dados. Motivo:", erro);
+            }
+
             throw erro;
         }
     }

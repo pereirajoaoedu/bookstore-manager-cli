@@ -91,7 +91,7 @@ export class AutorController {
             console.log("Autor removido com sucesso!");
         }
         catch (erro) {
-            console.error("Falha ao remover autor. Motivo:", erro);
+            await terminal.question("Pressione qualquer tecla para continuar...")
         }
     }
 }

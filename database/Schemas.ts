@@ -51,6 +51,11 @@ export const InserirAutor = `
     VALUES ($1, $2, $3, $4)
 `;
 
+export const InserirLivro = `
+    INSERT INTO LIVRO (LIV_TITULO, LIV_AUT_ID, LIV_DATA_PUBLICACAO, LIV_NUMERO_PAGINAS, LIV_ISBN, LIV_ATIVO)
+    VALUES ($1, $2, $3, $4, $5, $6)
+`;
+
 //#endregion
 
 // #region Selects
@@ -77,6 +82,36 @@ export const ListarAutorPorId = `
     WHERE AUT.AUT_ID = $1;
 `;
 
+export const ListarLivros = `
+    SELECT
+      LIV.LIV_ID AS ID,
+      LIV.LIV_TITULO AS TITULO,
+      AUT.AUT_ID AS ID_AUTOR,
+      AUT.AUT_NOME AS NOME_AUTOR,
+      TO_CHAR(LIV.LIV_DATA_PUBLICACAO,'DD/MM/YYYY') AS DATA_PUBLICACAO,
+      LIV.LIV_NUMERO_PAGINAS AS NUMERO_PAGINAS,
+      LIV.LIV_ISBN AS ISBN,
+      LIV.LIV_ATIVO AS ATIVO
+    FROM LIVRO LIV
+    INNER JOIN AUTOR AUT ON LIV.LIV_AUT_ID = AUT.AUT_ID
+    ORDER BY LIV.LIV_TITULO;
+`;
+
+export const ListarLivroPorId = `
+    SELECT
+      LIV.LIV_ID AS ID,
+      LIV.LIV_TITULO AS TITULO,
+      AUT.AUT_ID AS ID_AUTOR,
+      AUT.AUT_NOME AS NOME_AUTOR,
+      TO_CHAR(LIV.LIV_DATA_PUBLICACAO,'DD/MM/YYYY') AS DATA_PUBLICACAO,
+      LIV.LIV_NUMERO_PAGINAS AS NUMERO_PAGINAS,
+      LIV.LIV_ISBN AS ISBN,
+      LIV.LIV_ATIVO AS ATIVO
+    FROM LIVRO LIV
+    INNER JOIN AUTOR AUT ON LIV.LIV_AUT_ID = AUT.AUT_ID
+    WHERE LIV.LIV_ID = $1;
+`;
+
 // #endregion
 
 // #region Updates
@@ -87,6 +122,12 @@ export const AtualizarAutor = `
     WHERE AUT_ID = $5;
 `;
 
+export const AtualizarLivro = `
+    UPDATE LIVRO
+    SET LIV_TITULO = $1, LIV_AUT_ID = $2, LIV_DATA_PUBLICACAO = $3, LIV_NUMERO_PAGINAS = $4, LIV_ISBN = $5, LIV_ATIVO = $6
+    WHERE LIV_ID = $7;
+`;
+
 // #endregion
 
 // #region Deletes
@@ -94,6 +135,11 @@ export const AtualizarAutor = `
 export const RemoverAutor = `
     DELETE FROM AUTOR
     WHERE AUT_ID = $1;
+`;
+
+export const RemoverLivro = `
+    DELETE FROM LIVRO
+    WHERE LIV_ID = $1;
 `;
 
 // #endregion
