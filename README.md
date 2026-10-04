@@ -68,6 +68,8 @@ A ideia é que com a documentação o usuário consiga compreender o que é o pr
     </td>
     <td>
       <h3>João Eduardo Miranda da Silva Pereira</h3>
+      <h1>Curso: Fundamentos para Back-end: JavaScript, TypeScript e PostgreSQL</h2>
+      <h1>Matrícula: 26861772504671</h2>
       Desenvolvedor solo do projeto. Optei por realizar todas as etapas do zero, desde a arquitetura até os testes, para consolidar meu aprendizado. O uso de IA limitou-se ao papel de material de apoio para esclarecer dúvidas técnicas e de sintaxe, sem o uso de geração de código automatizado.
     </td>
   </tr>
