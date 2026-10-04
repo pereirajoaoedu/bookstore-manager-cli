@@ -1,11 +1,12 @@
 import { TestarConexao } from "../database/ConnectionFactory.js";
 import { VerificarBancoDeDados, SincronizarTabelas } from "./EtapasInicializacaoPrograma.js";
+import { AtualizarProgresso } from "../utils/Carregamento.js";
 
 export async function IniciarPrograma() {
   const prefixo = "DB1";
 
-  console.log('(0%) Iniciando o programa...');
-  console.log('(10%) Verificando existência do banco de dados...');
+  AtualizarProgresso(0, "Verificando existência do banco de dados...");
+  AtualizarProgresso(10, "Banco de dados não existe. Criando banco de dados...");
   const retornoBanco = await TestarConexao(prefixo);
 
   const bancoVerificado = await VerificarBancoDeDados(retornoBanco);

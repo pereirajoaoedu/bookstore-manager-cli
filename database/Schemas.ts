@@ -1,4 +1,4 @@
-//#region Criação de Tabelas
+// #region Criação de Tabelas
 
 export const CriarTabelaAutor = `
     CREATE TABLE IF NOT EXISTS AUTOR (
@@ -42,9 +42,9 @@ export const CriarTabelaCliente = `
     );
   `;
   
-//#endregion
+// #endregion
 
-//#region Inserts
+// #region Inserts
 
 export const InserirAutor = `
     INSERT INTO AUTOR (AUT_NOME, AUT_DATA_NASCIMENTO, AUT_RESUMO, AUT_ATIVO)
@@ -53,16 +53,47 @@ export const InserirAutor = `
 
 //#endregion
 
-//#region Selects
+// #region Selects
 
 export const ListarAutores = `
     SELECT 
       AUT.AUT_ID AS ID, 
       AUT.AUT_NOME AS NOME, 
       TO_CHAR(AUT_DATA_NASCIMENTO,'DD/MM/YYYY') AS DATA_NASCIMENTO, 
-      AUT.AUT_RESUMO AS RESUMO
+      AUT.AUT_RESUMO AS RESUMO,
+      AUT.AUT_ATIVO AS ATIVO
     FROM AUTOR AUT
     ORDER BY AUT.AUT_NOME;
 `;
 
-//#endregion
+export const ListarAutorPorId = `
+    SELECT
+      AUT.AUT_ID AS ID, 
+      AUT.AUT_NOME AS NOME, 
+      TO_CHAR(AUT_DATA_NASCIMENTO,'DD/MM/YYYY') AS DATA_NASCIMENTO, 
+      AUT.AUT_RESUMO AS RESUMO,
+      AUT.AUT_ATIVO AS ATIVO
+    FROM AUTOR AUT
+    WHERE AUT.AUT_ID = $1;
+`;
+
+// #endregion
+
+// #region Updates
+
+export const AtualizarAutor = `
+    UPDATE AUTOR
+    SET AUT_NOME = $1, AUT_DATA_NASCIMENTO = $2, AUT_RESUMO = $3, AUT_ATIVO = $4
+    WHERE AUT_ID = $5;
+`;
+
+// #endregion
+
+// #region Deletes
+
+export const RemoverAutor = `
+    DELETE FROM AUTOR
+    WHERE AUT_ID = $1;
+`;
+
+// #endregion

@@ -14,7 +14,20 @@ export class AutorService {
         await autorRepository.InserirAutor(novoAutor);
     }
     
-    public async ListarAutores(): Promise<Autor[]> {
-        return await autorRepository.ListarAutores();
+    public async ListarAutores(id: number = 0): Promise<Autor[]> {
+        return await autorRepository.ListarAutores(id);
+    }
+
+    public async AtualizarAutor(id: number, nome: string, dataNascimento: Date, resumo: string, ativo: boolean): Promise<void> {
+        if (nome.trim().length === 0) {
+            throw new Error("O nome do autor não pode estar vazio.");
+        }
+
+        const autorAtualizado = new Autor(id, nome, dataNascimento, resumo, ativo);
+        await autorRepository.AtualizarAutor(autorAtualizado);
+    }
+
+    public async RemoverAutor(id: number): Promise<void> {
+        await autorRepository.RemoverAutor(id);
     }
 }

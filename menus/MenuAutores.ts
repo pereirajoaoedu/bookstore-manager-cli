@@ -1,9 +1,8 @@
-import { terminal } from '../utils/Terminal.js';
-import { setTimeout } from 'node:timers';
+import { aguardar, terminal } from '../utils/Terminal.js';
 import { AutorController } from '../controllers/AutorController.js';
 
 export async function MenuAutores() {
-    const aguardar = (ms: number) => new Promise<void>(resolve => setTimeout(resolve, ms));
+
     const autorController = new AutorController();
     let voltar = false;
 
@@ -28,16 +27,19 @@ export async function MenuAutores() {
                 break;
             case "2":
                 await autorController.ListarAutores();
-                const teclar = await terminal.question("\nPressione qualquer tecla para continuar...");
+                await terminal.question("\nPressione qualquer tecla para continuar...");
                 break;
             case "3":
-                console.log("Consultando Autor por ID...");
+                const idString = await terminal.question('Digite o ID do autor: ');
+                const id = parseInt(idString, 10);
+                await autorController.ListarAutores(id);
+                await terminal.question("\nPressione qualquer tecla para continuar...");
                 break;
             case "4":
-                console.log("Atualizando Autor...");
+                await autorController.AtualizarAutor();
                 break;
             case "5":
-                console.log("Removendo Autor...");
+                await autorController.RemoverAutor();
                 break;
             case "6":
                 console.log("Voltando ao Menu Principal...");
