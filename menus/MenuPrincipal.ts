@@ -1,5 +1,6 @@
 import { aguardar, terminal } from '../utils/Terminal.js';
 import { MenuAutores } from './MenuAutores.js';
+import { MenuLivros } from './MenuLivros.js';
 
 export async function MenuPrincipal() {
     
@@ -25,7 +26,7 @@ export async function MenuPrincipal() {
                 await MenuAutores();
                 break;
             case "2":
-                console.log("Gerenciando Livros...");
+                await MenuLivros();
                 break;
             case "3":
                 console.log("Gerenciando Clientes...");
