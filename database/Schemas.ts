@@ -43,3 +43,22 @@ export const CriarTabelaCliente = `
   `;
   
 //#endregion
+
+//#region Inserts
+
+export const InserirAutor = `
+    INSERT INTO AUTOR (AUT_NOME, AUT_DATA_NASCIMENTO, AUT_RESUMO, AUT_ATIVO)
+    VALUES ($1, $2, $3, $4)
+`;
+
+//#endregion
+
+//#region Selects
+
+export const ListarAutores = `
+    SELECT AUT_ID AS ID, AUT_NOME AS NOME, AUT_DATA_NASCIMENTO AS DATA_NASCIMENTO, AUT_RESUMO AS RESUMO
+    FROM AUTOR
+    WHERE AUT_ATIVO = TRUE
+`;
+
+//#endregion
