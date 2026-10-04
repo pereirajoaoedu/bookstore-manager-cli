@@ -1,6 +1,5 @@
 import { terminal } from '../utils/Terminal.js';
 import { setTimeout } from 'node:timers';
-import { MenuPrincipal } from './MenuPrincipal.js';
 import { AutorController } from '../controllers/AutorController.js';
 
 export async function MenuAutores() {
@@ -28,7 +27,8 @@ export async function MenuAutores() {
                 await autorController.AdicionarAutor();
                 break;
             case "2":
-                console.log("Listando Autores...");
+                await autorController.ListarAutores();
+                const teclar = await terminal.question("\nPressione qualquer tecla para continuar...");
                 break;
             case "3":
                 console.log("Consultando Autor por ID...");
