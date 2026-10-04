@@ -24,4 +24,16 @@ export class AutorController {
             console.error("Falha ao cadastrar autor. Motivo:", erro);
         }
     }
+
+    public async ListarAutores(): Promise<void> {
+        try {
+            const autores = await autorService.ListarAutores();
+            console.log("=== Lista de Autores ===");
+            autores.forEach((autor) => {
+                console.log(`ID: ${autor.id}, Nome: ${autor.nome}, Data de Nascimento: ${autor.dataNascimento}, Resumo: ${autor.resumo}`);
+            });
+        } catch (erro) {
+            console.error("Falha ao listar autores. Motivo:", erro);
+        }
+    }
 }

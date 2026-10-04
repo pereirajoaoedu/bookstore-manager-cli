@@ -13,4 +13,8 @@ export class AutorService {
         const novoAutor = new Autor(0, nome, dataNascimento, resumo, true);
         await autorRepository.InserirAutor(novoAutor);
     }
+    
+    public async ListarAutores(): Promise<Autor[]> {
+        return await autorRepository.ListarAutores();
+    }
 }

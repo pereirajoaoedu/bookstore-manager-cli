@@ -14,4 +14,16 @@ export class AutorRepository {
             throw erro;
         }
     }
+
+    public async ListarAutores(): Promise<Autor[]> {
+        try {
+            const pool = await IniciarConexao("DB1");
+            const resultado = await pool.query(schemas.ListarAutores);
+            await FecharConexao("DB1");
+            return resultado.rows.map((row: any) => new Autor(row.id, row.nome, row.data_nascimento, row.resumo, true));
+        } catch (erro) {
+            console.error("Erro ao listar autores no banco de dados. Motivo:", erro);
+            throw erro;
+        }
+    }
 }
