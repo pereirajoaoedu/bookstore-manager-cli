@@ -56,6 +56,11 @@ export const InserirLivro = `
     VALUES ($1, $2, $3, $4, $5, $6)
 `;
 
+export const InserirCliente = `
+  INSERT INTO CLIENTE (CLI_NOME, CLI_EMAIL, CLI_TELEFONE, CLI_DATA_NASCIMENTO, CLI_ATIVO)
+  VALUES ($1, $2, $3, $4, $5)
+`
+
 //#endregion
 
 // #region Selects
@@ -112,6 +117,31 @@ export const ListarLivroPorId = `
     WHERE LIV.LIV_ID = $1;
 `;
 
+export const ListarClientes = `
+  SELECT
+    CLI.CLI_ID AS ID,
+    CLI.CLI_Nome AS NOME,
+    CLI.CLI_Email AS EMAIL,
+    CLI.CLI_Telefone AS TELEFONE,
+    TO_CHAR(CLI.CLI_DATA_NASCIMENTO,'DD/MM/YYYY') AS DATA_NASCIMENTO,
+    CLI.CLI_ATIVO AS ATIVO
+  FROM CLIENTE CLI
+  ORDER BY CLI.CLI_Nome;
+`
+
+export const ListarClientesPorId = `
+  SELECT
+    CLI.CLI_ID AS ID,
+    CLI.CLI_Nome AS NOME,
+    CLI.CLI_Email AS EMAIL,
+    CLI.CLI_Telefone AS TELEFONE,
+    TO_CHAR(CLI.CLI_DATA_NASCIMENTO,'DD/MM/YYYY') AS DATA_NASCIMENTO,
+    CLI.CLI_ATIVO AS ATIVO
+  FROM CLIENTE CLI
+  WHERE CLI.CLI_ID = $1
+  ORDER BY CLI.CLI_Nome;
+`
+
 // #endregion
 
 // #region Updates
@@ -128,6 +158,12 @@ export const AtualizarLivro = `
     WHERE LIV_ID = $7;
 `;
 
+export const AtualizarCliente = `
+  UPDATE CLIENTE
+  SET CLI_NOME = $1, CLI_EMAIL = $2, CLI_TELEFONE = $3, CLI_DATA_NASCIMENTO = $4, CLI_ATIVO = $5
+  WHERE CLI_ID = $6;
+`
+
 // #endregion
 
 // #region Deletes
@@ -141,5 +177,10 @@ export const RemoverLivro = `
     DELETE FROM LIVRO
     WHERE LIV_ID = $1;
 `;
+
+export const RemoverCliente = `
+  DELETE FROM CLIENTE
+  WHERE CLI_ID = $1;
+`
 
 // #endregion
