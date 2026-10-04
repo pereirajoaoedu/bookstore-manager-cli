@@ -1,9 +1,8 @@
-import { terminal } from '../utils/Terminal.js';
-import { setTimeout } from 'node:timers';
+import { aguardar, terminal } from '../utils/Terminal.js';
 import { MenuAutores } from './MenuAutores.js';
 
 export async function MenuPrincipal() {
-    const aguardar = (ms: number) => new Promise<void>(resolve => setTimeout(resolve, ms));
+    
     let sair = false;
 
     while (!sair) {
