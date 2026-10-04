@@ -58,7 +58,7 @@ export async function SincronizarTabelas() : Promise<boolean> {
     const tabelaEmprestimo = await createTables.CriarTabelaEmprestimo();
 
     if (tabelaEmprestimo) {
-        console.log('(100%) Tabela empréstimo verificada com sucesso. Inicialização completa.');
+        console.log('(100%) Tabela empréstimo verificada com sucesso.');
     }
     else {
         console.error("Erro ao verificar a tabela empréstimo. Encerrando o progarama.");

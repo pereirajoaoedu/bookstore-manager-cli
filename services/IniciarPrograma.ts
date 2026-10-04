@@ -4,8 +4,8 @@ import { VerificarBancoDeDados, SincronizarTabelas } from "./EtapasInicializacao
 export async function IniciarPrograma() {
   const prefixo = "DB1";
 
-  console.log('Iniciando o programa...');
-  console.log('(0%) Verificando existência do banco de dados...');
+  console.log('(0%) Iniciando o programa...');
+  console.log('(10%) Verificando existência do banco de dados...');
   const retornoBanco = await TestarConexao(prefixo);
 
   const bancoVerificado = await VerificarBancoDeDados(retornoBanco);
@@ -14,7 +14,15 @@ export async function IniciarPrograma() {
     const tabelasSincronizadas = await SincronizarTabelas();
 
     if (tabelasSincronizadas) {
-      console.log('(100%) Programa iniciado com sucesso!');
+      console.log('Programa iniciado com sucesso!');
     }
+    else {
+      console.error('Erro ao sincronizar tabelas. Finalizando o programa.');
+      close();
+    }
+  }
+  else {
+    console.error('Erro ao validar banco de dados. Finalizando o programa.');
+    close();
   }
 }
