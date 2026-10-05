@@ -75,14 +75,24 @@ export class LivroController {
                 console.log("=== Atualização de Livro ===");
                 console.log("A seguir informe os dados do livro. Caso não queira alterar algum campo, apenas pressione Enter.");
 
-                const tituloAtualizado = await terminal.question(`Título [${livroAtual.titulo}]: `) || livroAtual.titulo;
-                const isbnAtualizado = await terminal.question(`ISBN [${livroAtual.isbn}]: `) || livroAtual.isbn;
-                const dataString = await terminal.question(`Data de Publicação (DD/MM/AAAA) [${livroAtual.dataPublicacao}]: `);
-                const dataPublicacaoAtualizada = dataString ? await TrataData(dataString) : livroAtual.dataPublicacao;
-                const numeroPaginasAtualizado = parseInt(await terminal.question(`Número de Páginas [${livroAtual.numeroPaginas}]: `) || livroAtual.numeroPaginas.toString(), 10);
-                const idAutorAtualizado = parseInt(await terminal.question(`ID do Autor [${livroAtual.idAutor}]: `) || livroAtual.idAutor.toString(), 10);
-                const quantidadeAtualizada = parseInt(await terminal.question(`Quanitdade Disponível [${livroAtual.quantidadeDisponivel}]: `) || livroAtual.quantidadeDisponivel.toString(),10);
-                const ativoString = await terminal.question(`Ativo [${livroAtual.ativo === true ? 'Sim' : 'Não'}] (Sim/Não): `) || livroAtual.ativo;
+                const tituloAtualizado = (await terminal.question(`Título [${livroAtual.titulo ?? ''}]: `)) || livroAtual.titulo || '';
+                const isbnAtualizado = (await terminal.question(`ISBN [${livroAtual.isbn ?? ''}]: `)) || livroAtual.isbn || '';
+                const dataString = await terminal.question(`Data de Publicação (DD/MM/AAAA) [${livroAtual.dataPublicacao ?? ''}]: `);
+                const dataPublicacaoAtualizada: Date =
+                    (dataString ? await TrataData(dataString) : livroAtual.dataPublicacao) ?? new Date();
+                const numeroPaginasAtualizado = parseInt(
+                    (await terminal.question(`Número de Páginas [${livroAtual.numeroPaginas ?? 0}]: `) || livroAtual.numeroPaginas?.toString() || '0'),
+                    10
+                );
+                const idAutorAtualizado = parseInt(
+                    (await terminal.question(`ID do Autor [${livroAtual.idAutor ?? 0}]: `) || livroAtual.idAutor?.toString() || '0'),
+                    10
+                );
+                const quantidadeAtualizada = parseInt(
+                    (await terminal.question(`Quanitdade Disponível [${livroAtual.quantidadeDisponivel ?? 0}]: `) || livroAtual.quantidadeDisponivel?.toString() || '0'),
+                    10
+                );
+                const ativoString = (await terminal.question(`Ativo [${livroAtual.ativo === true ? 'Sim' : 'Não'}] (Sim/Não): `)) || (livroAtual.ativo === true ? 'Sim' : 'Não');
                 const ativoAtualizado = ativoString === 'Sim' || ativoString === 'S' || ativoString === '1';
 
                 await livroService.AtualizarLivro(id, tituloAtualizado, idAutorAtualizado, dataPublicacaoAtualizada, numeroPaginasAtualizado, isbnAtualizado, quantidadeAtualizada, ativoAtualizado);
