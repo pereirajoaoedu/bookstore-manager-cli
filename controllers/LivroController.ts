@@ -17,9 +17,9 @@ export class LivroController {
             const dataString = await terminal.question('Data de publicação (DD/MM/AAAA): ');
             const dataPublicacao = await TrataData(dataString);
             const numeroPaginas = parseInt(await terminal.question('Número de páginas: '), 10);
-            const ativo = (await terminal.question('Ativo? (Sim/Não): ')).toLowerCase() === 'sim';
+            const quantidadeDisponivel = parseInt(await terminal.question('Quantidade disponível: '), 10)
 
-            await livroService.InserirLivro(titulo, idAutor, dataPublicacao, numeroPaginas, isbn, ativo);
+            await livroService.InserirLivro(titulo, idAutor, dataPublicacao, numeroPaginas, isbn, quantidadeDisponivel, true);
 
             console.log("Cadastro realizado com sucesso!");
 
@@ -48,6 +48,7 @@ export class LivroController {
                 console.log("ISBN:", livro.isbn);
                 console.log("Data de Publicação:", livro.dataPublicacao);
                 console.log("Número de Páginas:", livro.numeroPaginas);
+                console.log("Quantidade Disponível: ", livro.quantidadeDisponivel);
                 console.log("Ativo:", livro.ativo ? "Sim" : "Não");
             });
             console.log("---------------------------");
@@ -80,10 +81,11 @@ export class LivroController {
                 const dataPublicacaoAtualizada = dataString ? await TrataData(dataString) : livroAtual.dataPublicacao;
                 const numeroPaginasAtualizado = parseInt(await terminal.question(`Número de Páginas [${livroAtual.numeroPaginas}]: `) || livroAtual.numeroPaginas.toString(), 10);
                 const idAutorAtualizado = parseInt(await terminal.question(`ID do Autor [${livroAtual.idAutor}]: `) || livroAtual.idAutor.toString(), 10);
+                const quantidadeAtualizada = parseInt(await terminal.question(`Quanitdade Disponível [${livroAtual.quantidadeDisponivel}]: `) || livroAtual.quantidadeDisponivel.toString(),10);
                 const ativoString = await terminal.question(`Ativo [${livroAtual.ativo === true ? 'Sim' : 'Não'}] (Sim/Não): `) || livroAtual.ativo;
                 const ativoAtualizado = ativoString === 'Sim' || ativoString === 'S' || ativoString === '1';
 
-                await livroService.AtualizarLivro(id, tituloAtualizado, idAutorAtualizado, dataPublicacaoAtualizada, numeroPaginasAtualizado, isbnAtualizado, ativoAtualizado);
+                await livroService.AtualizarLivro(id, tituloAtualizado, idAutorAtualizado, dataPublicacaoAtualizada, numeroPaginasAtualizado, isbnAtualizado, quantidadeAtualizada, ativoAtualizado);
 
                 console.log("Atualização realizada com sucesso!");
             }

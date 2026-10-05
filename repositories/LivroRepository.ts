@@ -7,7 +7,7 @@ export class LivroRepository {
     public async InserirLivro(livro: Livro): Promise<void> {
         try {
             const pool = await IniciarConexao("DB1");
-            await pool.query(schemas.InserirLivro, [livro.titulo, livro.idAutor, livro.dataPublicacao, livro.numeroPaginas, livro.isbn, livro.ativo]);
+            await pool.query(schemas.InserirLivro, [livro.titulo, livro.idAutor, livro.dataPublicacao, livro.numeroPaginas, livro.isbn, livro.quantidadeDisponivel, livro.ativo]);
             await FecharConexao("DB1");
 
         } catch (erro) {
@@ -21,7 +21,7 @@ export class LivroRepository {
             const pool = await IniciarConexao("DB1");
             const resultado = await pool.query(id > 0 ? schemas.ListarLivroPorId : schemas.ListarLivros, id > 0 ? [id] : []);
             await FecharConexao("DB1");
-            return resultado.rows.map((row: any) => new Livro(row.id, row.titulo, row.id_autor, row.nome_autor, row.data_publicacao, row.numero_paginas, row.isbn, row.ativo));
+            return resultado.rows.map((row: any) => new Livro(row.id, row.titulo, row.id_autor, row.nome_autor, row.data_publicacao, row.numero_paginas, row.isbn, row.quantidade_disponivel, row.ativo));
 
         } catch (erro) {
             console.error("Erro ao listar livros no banco de dados. Motivo:", erro);
@@ -32,7 +32,7 @@ export class LivroRepository {
     public async AtualizarLivro(livro: Livro): Promise<void> {
         try {
             const pool = await IniciarConexao("DB1");
-            await pool.query(schemas.AtualizarLivro, [livro.titulo, livro.idAutor, livro.dataPublicacao, livro.numeroPaginas, livro.isbn, livro.ativo, livro.id]);
+            await pool.query(schemas.AtualizarLivro, [livro.titulo, livro.idAutor, livro.dataPublicacao, livro.numeroPaginas, livro.isbn, livro.quantidadeDisponivel, livro.ativo, livro.id]);
             await FecharConexao("DB1");
 
         } catch (erro) {
