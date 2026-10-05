@@ -2,8 +2,9 @@ import { aguardar, terminal } from '../utils/Terminal.js';
 import { MenuAutores } from './MenuAutores.js';
 import { MenuEmprestimos } from './MenuEmprestimos.js';
 import { MenuLivros } from './MenuLivros.js';
-import { MenuClientes } from './MeuCliente.js';
-
+import { MenuClientes } from './MenuCliente.js';
+import { MenuRelatorios } from './MenuRelatorios.js'
+ 
 export async function MenuPrincipal() {
     
     let sair = false;
@@ -37,7 +38,7 @@ export async function MenuPrincipal() {
                 await MenuEmprestimos();
                 break;
             case "5":
-                console.log("Exibindo Relatórios...");
+                await MenuRelatorios();
                 break;
             case "6":
                 console.log("Saindo do programa...");
