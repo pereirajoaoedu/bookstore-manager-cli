@@ -4,13 +4,13 @@ import { LivroRepository } from '../repositories/LivroRepository.js';
 const livroRepository = new LivroRepository();
 
 export class LivroService {
-    public async InserirLivro(titulo: string, idAutor: number, dataPublicacao: Date, numeroPaginas: number, isbn: string, ativo: boolean): Promise<void> {
+    public async InserirLivro(titulo: string, idAutor: number, dataPublicacao: Date, numeroPaginas: number, isbn: string, quantidadeDisponivel: number, ativo: boolean): Promise<void> {
         
         if (titulo.trim().length === 0) {
             throw new Error("O título do livro não pode estar vazio.");
         }
 
-        const novoLivro = new Livro(0, titulo, idAutor, '', dataPublicacao, numeroPaginas, isbn, ativo);
+        const novoLivro = new Livro(0, titulo, idAutor, '', dataPublicacao, numeroPaginas, isbn, quantidadeDisponivel, ativo);
         await livroRepository.InserirLivro(novoLivro);
     }
 
@@ -18,7 +18,7 @@ export class LivroService {
         return await livroRepository.ListarLivros(id);
     }
 
-    public async AtualizarLivro(id: number, titulo: string, idAutor: number, dataPublicacao: Date, numeroPaginas: number, isbn: string, ativo: boolean): Promise<void> {
+    public async AtualizarLivro(id: number, titulo: string, idAutor: number, dataPublicacao: Date, numeroPaginas: number, isbn: string, quantidadeDisponivel: number, ativo: boolean): Promise<void> {
         
         if (titulo.trim().length === 0) {
             throw new Error("O título do livro não pode estar vazio.");
@@ -28,7 +28,7 @@ export class LivroService {
             throw new Error("O ISBN do livro não pode estar vazio.");
         }
 
-        const livroAtualizado = new Livro(id, titulo, idAutor, '', dataPublicacao, numeroPaginas, isbn, ativo);
+        const livroAtualizado = new Livro(id, titulo, idAutor, '', dataPublicacao, numeroPaginas, isbn, quantidadeDisponivel, ativo);
         await livroRepository.AtualizarLivro(livroAtualizado);
     }
 
